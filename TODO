@@ -1,0 +1,50 @@
+J'ai fait ma SINGLE PAGE APPLICATION base sur la logique DOM, routeur
+
+Dans mon fichier html j'ai une div class="DOM"
+que j'utlise dans mon router.js pour injecter les diverses page html
+
+FIXE : 
+ajout event.preventDefaul(); navigateTo("url");
+pour ne plus avoir de chargement lorsque je clique sur un lien
+
+INSCRIPTION ET CONNEXION
+POSTS ET COMMENTAIRES
+MESSAGES PRIVEES
+
+
+BASE DE DONNEES SQLITE
+GOLANG FOR BACKEND AND WEBSOCKETS
+JAVASCRIPT FOR WEBSOCKETS AND FRONTEND
+HTML ET CSS
+
+SAP
+
+CLIENT NEED TO REGISTER OR LOGIN FOR ACCESS TO THE FORUM
+
+
+
+POSTS :
+
+CATEGORIES
+COMMENTAIRES (POUVOIR LES VOIR UNIQUEMENT SI LE CLIENT CLIQUE SUR LE COMMENTAIRE
+)
+PUBLICATIONS DANS UN FLUX
+
+
+
+CHAT :
+SAVOIR QUI EST EN LIGNE OU HORS LIGNE
+(COMME DISCORD)
+ Si l'utilisateur est nouveau et ne présente pas de messages, vous devez l'organiser par ordre alphabétique.
+
+ ENVOIE DE MESSAGE PRIVEE AUX UTILISATEURS EN LIGNE
+
+ Une section qui, lorsque vous cliquez sur l'utilisateur à qui vous souhaitez envoyer un message, recharge les messages passés. Les discussions entre utilisateurs doivent :
+        Soyez visible, pour cela vous devrez pouvoir voir les messages précédents que vous avez eu avec l'utilisateur
+        Rechargez les 10 derniers messages et lorsque vous faites défiler vers le haut pour voir plus de messages, vous devez en fournir 10 de plus à l'utilisateur, sans spammer l'événement de défilement. N'oubliez pas ce que vous avez appris !! (Accélérateur, anti-rebond)
+
+    Les messages doivent avoir un format spécifique :
+        Une date qui indique quand le message a été envoyé
+        Le nom d'utilisateur, qui identifie l'utilisateur qui a envoyé le message
+
+Comme prévu, les messages doivent fonctionner en temps réel, c'est-à-dire que si un utilisateur envoie un message, l'autre utilisateur doit recevoir la notification du nouveau message sans actualiser la page. Encore une fois, cela est possible grâce à l'utilisation de WebSockets dans le backend et le frontend.
