@@ -1,5 +1,8 @@
 package server
 
+// I need to fix this middleware
+// Because he doesn't work properly
+
 /*
 func MiddlewareRateLimiting(next http.Handler, requestsPerSecond int) http.Handler {
 	limiter := rate.NewLimiter(rate.Limit(requestsPerSecond), requestsPerSecond)
