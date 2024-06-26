@@ -10,7 +10,7 @@ func createTableCategories(db *sql.DB) error {
 	CREATE TABLE IF NOT EXISTS Categories (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		name TEXT NOT NULL,
-		description TEXT 
+		description TEXT NOT NULL
 	);
 	`
 	_, err := db.Exec(table)
@@ -23,10 +23,12 @@ func createTablePosts(db *sql.DB) error {
 	CREATE TABLE IF NOT EXISTS Posts (
 		id TEXT NOT NULL PRIMARY KEY,
 		userId TEXT NOT NULL,
+		username TEXT NOT NULL,
 		created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 		title TEXT NOT NULL,
 		description TEXT NOT NULL,
 		FOREIGN KEY(userId) REFERENCES Users(id)
+		FOREIGN KEY(username) REFERENCES Users(nickname)
 	);`
 	_, err := db.Exec(table)
 	return err

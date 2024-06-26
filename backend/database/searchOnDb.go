@@ -31,13 +31,14 @@ func GetCategoriesTable() ([]modals.Categories, error) {
 	return ConvertResults[modals.Categories](results)
 }
 
+// Home JS
 func GetPostTable() ([]modals.Post, error) {
 	executor := func(rows *sql.Rows) (interface{}, error) {
 		var post modals.Post
-		err := rows.Scan(&post.Id, &post.UserId, &post.Creation, &post.Title, &post.Description)
+		err := rows.Scan(&post.Id, &post.UserId, &post.Username, &post.Creation, &post.Title, &post.Description)
 		return post, err
 	}
-	results, err := FetchDb("SELECT * FROM Posts", executor)
+	results, err := FetchDb("SELECT * FROM Posts ORDER BY created_at DESC", executor)
 	if err != nil {
 		return nil, err
 	}

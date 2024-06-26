@@ -1,4 +1,4 @@
-html, body {
+html{
     height: 100%;
     margin: 0;
     padding: 0;
@@ -103,37 +103,99 @@ h1 {
     text-align: center;
     width: 100%;
 }
+.categories-container,
+.posts-container,
+.postForm-container,
+.home-message .form-container {
+    width: 100%;
+    max-width: 90%;
+    margin: 10px auto;
+}
 
+.postForm-container {
+    width: 100%;
+    max-width: 90%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid greenyellow;
+    border-radius: 10px;
+    background-color: #333;
+    box-sizing: border-box;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.postForm-container label,
+.postForm-container input,
+.postForm-container textarea {
+    color: white;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.postForm-container input,
+.postForm-container textarea {
+    padding: 8px;
+    border: 1px solid greenyellow;
+    border-radius: 5px;
+    background-color: #555;
+}
+
+.postForm-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.postForm-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Ajustements pour la section de bienvenue */
 .home-message {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 50%;
+    height: auto;
     width: 100%;
     text-align: center;
+    margin-top: 20px;
 }
 
 .categories-container {
-    margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     justify-content: space-around;
+    margin-top: 20px;
+    border: 2px solid green;
 }
 
 .category {
+    margin-top: 6px;
+    margin-bottom: 6px;
     background-color: #c9bebe;
     padding: 15px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    flex: 1 1 calc(30% - 20px);
+    flex: 1 1 calc(45% - 20px);
     box-sizing: border-box;
-    max-width: 300px;
+    max-width: 400px;
     border: 2px solid green;
 }
 
 .category:hover {
-    background-color: #0056b3;
+    background-color: black;
+    color: white;
+    cursor: grabbing;
 }
 
 .category h2 {
@@ -142,28 +204,151 @@ h1 {
 }
 
 .category p {
+    text-align: center;
     margin-bottom: 0;
     font-size: 0.8em;
 }
 
+.category .username {
+    color: rgb(143, 20, 20);
+    margin-bottom: 0;
+    font-size: 0.8em;
+}
+
+.category .termux {
+    color: greenyellow;
+    margin-bottom: 0;
+    font-size: 1.0em;
+}
+
+.category .blue {
+    color: blue;
+}
+
+.category .white{
+    color: white;
+}
+
+.category .SpanPost {
+    color: white;
+    margin-bottom: 0;
+    font-size: 1em;
+}
+
+.category .blue{
+    color: blue;
+}
+
+.posts-container {
+    border: 2px solid green;
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-around;
+}
+
+.posts {
+    margin-top: 6px;
+    margin-bottom: 6px;
+    background-color: #333;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    flex: 1 1 calc(45% - 20px);
+    box-sizing: border-box;
+    max-width: 400px;
+    border: 2px solid greenyellow;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+}
+
+.posts:hover {
+    background-color: black;
+    cursor: grabbing;
+    border: 2px solid green;
+}
+
+.posts h2 {
+    margin-top: 0;
+    font-size: 1em;
+    border: 2px solid greenyellow;
+    border-radius: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.posts p {
+    margin-bottom: 0;
+    font-size: medium;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.posts .username {
+    color: rgb(143, 20, 20);
+    margin-bottom: 0;
+    font-size: 0.8em;
+}
+
+.posts span {
+    color: greenyellow;
+    margin-bottom: 0;
+    font-size: 1em;
+}
+
+.posts .blue {
+    color: blue;
+}
+
+.posts .white{
+    color: white;
+}
+
+.posts .SpanPost {
+    color: white;
+    margin-bottom: 0;
+    font-size: 1em;
+}
+
+.posts .blue{
+    color: blue;
+}
+
+.posts .time {
+    font-size: small;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: inherit;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+/* Ajustements pour les médias */
 @media (max-width: 1024px) {
     .form-container {
         width: 90%;
     }
 
-    .category {
+    .category,
+    .posts {
         flex: 1 1 calc(45% - 20px);
         max-width: none;
     }
 }
-
 
 @media (max-width: 768px) {
     .form-container {
         width: 100%;
     }
 
-    .category {
+    .category,
+    .posts {
         flex: 1 1 calc(100% - 20px);
         max-width: none;
     }

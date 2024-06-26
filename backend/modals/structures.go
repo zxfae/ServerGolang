@@ -23,6 +23,7 @@ type Categories struct {
 type Post struct {
 	Id          string `json:"id"`
 	UserId      string `json:"userid"`
+	Username    string `json:"username"`
 	Creation    string `json:"created"`
 	Title       string `json:"title"`
 	Description string `json:"description"`

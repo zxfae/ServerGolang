@@ -14,6 +14,7 @@ func ServerParameters(handler http.Handler, Request int) *http.Server {
 		WriteTimeout:      10 * time.Second,
 		IdleTimeout:       120 * time.Second,
 		MaxHeaderBytes:    1 << 20,
-		Handler:           MiddlewareRateLimiting(handler, Request),
+		//Handler:           MiddlewareRateLimiting(handler, Request),
+		Handler: handler,
 	}
 }
