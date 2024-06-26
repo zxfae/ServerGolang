@@ -2,6 +2,7 @@ package database
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 
 	_ "github.com/mattn/go-sqlite3"
@@ -31,39 +32,62 @@ func InitDB() (*sql.DB, error) {
 
 // InitMainDB initializes the main database
 func InitMainDB() {
+
 	var err error
 
 	Db, err = InitDB()
 	if err != nil {
 		log.Fatalf("Failed to initialize the database: %v", err)
 	}
+
+	tableCreationFuncs := []struct {
+		name string
+		fn   func(*sql.DB) error
+	}{
+		{"Categories", CreateTableCategories},
+		{"Posts", CreateTablePosts},
+		{"Comments", CreateTableComments},
+		{"LikesComments", CreateTableLikesComments},
+		{"PostCategories", CreateTablePostsCategories},
+		{"PostsLikes", CreateTablePostsLikes},
+		{"Users", CreateTableUsers},
+	}
+
+	for _, tableFunc := range tableCreationFuncs {
+		if err := tableFunc.fn(Db); err != nil {
+			fmt.Printf("Error creating table %s: %s\n", tableFunc.name, err)
+		} else {
+			fmt.Printf("Table %s created successfully\n", tableFunc.name)
+		}
+	}
+
 	//defer db.Close()
 
-	if err = createTableUsers(Db); err != nil {
+	if err = CreateTableUsers(Db); err != nil {
 		log.Fatalf("Failed to create Users table: %v", err)
 	}
 
-	if err = createTableCategories(Db); err != nil {
+	if err = CreateTableCategories(Db); err != nil {
 		log.Fatalf("Failed to create Categories table : %v", err)
 	}
 
-	if err = createTablePosts(Db); err != nil {
+	if err = CreateTablePosts(Db); err != nil {
 		log.Fatalf("Failed to create Posts table: %v", err)
 	}
 
-	if err = createTableComments(Db); err != nil {
+	if err = CreateTableComments(Db); err != nil {
 		log.Fatalf("Failed to create Posts table: %v", err)
 	}
 
-	if err = createTableLikesComments(Db); err != nil {
+	if err = CreateTableLikesComments(Db); err != nil {
 		log.Fatal("Failed to create LikesComments table")
 	}
 
-	if err = createTablePostsCategories(Db); err != nil {
+	if err = CreateTablePostsCategories(Db); err != nil {
 		log.Fatal("Failed to create PostCategories table")
 	}
 
-	if err = createTablePostsLikes(Db); err != nil {
+	if err = CreateTablePostsLikes(Db); err != nil {
 		log.Fatal("Failed to create PostLikes table")
 	}
 	log.Println("Database initialized, test user and test post inserted successfully")

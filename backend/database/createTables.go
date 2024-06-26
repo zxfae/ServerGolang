@@ -5,7 +5,7 @@ import (
 )
 
 // createTableCategories creates Categories table
-func createTableCategories(db *sql.DB) error {
+func CreateTableCategories(db *sql.DB) error {
 	table := `
 	CREATE TABLE IF NOT EXISTS Categories (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -18,7 +18,7 @@ func createTableCategories(db *sql.DB) error {
 }
 
 // createTablePosts creates the Posts table
-func createTablePosts(db *sql.DB) error {
+func CreateTablePosts(db *sql.DB) error {
 	table := `
 	CREATE TABLE IF NOT EXISTS Posts (
 		id TEXT NOT NULL PRIMARY KEY,
@@ -34,7 +34,7 @@ func createTablePosts(db *sql.DB) error {
 	return err
 }
 
-func createTableComments(db *sql.DB) error {
+func CreateTableComments(db *sql.DB) error {
 	table := `
 	CREATE TABLE IF NOT EXISTS "Comments" (
 		id TEXT PRIMARY KEY, 
@@ -49,7 +49,7 @@ func createTableComments(db *sql.DB) error {
 	return err
 }
 
-func createTableLikesComments(db *sql.DB) error {
+func CreateTableLikesComments(db *sql.DB) error {
 	table := `
 	CREATE TABLE IF NOT EXISTS "LikesComments" (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -65,7 +65,7 @@ func createTableLikesComments(db *sql.DB) error {
 	return err
 }
 
-func createTablePostsCategories(db *sql.DB) error {
+func CreateTablePostsCategories(db *sql.DB) error {
 	table := `
 	CREATE TABLE IF NOT EXISTS "PostCategories" (
 		postId TEXT,
@@ -78,7 +78,7 @@ func createTablePostsCategories(db *sql.DB) error {
 	return err
 }
 
-func createTablePostsLikes(db *sql.DB) error {
+func CreateTablePostsLikes(db *sql.DB) error {
 	table := `
 	CREATE TABLE IF NOT EXISTS "PostsLike" (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -95,7 +95,7 @@ func createTablePostsLikes(db *sql.DB) error {
 }
 
 // createTableUsers creates the Users table
-func createTableUsers(db *sql.DB) error {
+func CreateTableUsers(db *sql.DB) error {
 	table := `
  CREATE TABLE IF NOT EXISTS Users (
         id TEXT NOT NULL PRIMARY KEY,
