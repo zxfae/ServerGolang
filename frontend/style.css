@@ -198,6 +198,10 @@ h1 {
     cursor: grabbing;
 }
 
+.category:hover .SpanPost {
+    color: white;
+}
+
 .category h2 {
     margin-top: 0;
     font-size: 1em;
@@ -230,7 +234,7 @@ h1 {
 }
 
 .category .SpanPost {
-    color: white;
+    color: #555;
     margin-bottom: 0;
     font-size: 1em;
 }
@@ -238,6 +242,7 @@ h1 {
 .category .blue{
     color: blue;
 }
+
 
 .posts-container {
     border: 2px solid green;
@@ -314,7 +319,8 @@ h1 {
 }
 
 .posts .SpanPost {
-    color: white;
+    color:  #c9bebe
+    ;
     margin-bottom: 0;
     font-size: 1em;
 }

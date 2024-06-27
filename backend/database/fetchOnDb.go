@@ -48,3 +48,31 @@ func ConvertResults[T any](results []interface{}) ([]T, error) {
 	}
 	return converted, nil
 }
+
+func FetchDbOth(query string, executor QueryExecutor, args ...interface{}) ([]interface{}, error) {
+	db, err := InitDB()
+	if err != nil {
+		return nil, err
+	}
+	defer db.Close()
+
+	rows, err := db.Query(query, args...) // Pass query parameters
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var results []interface{}
+
+	for rows.Next() {
+		result, err := executor(rows)
+		if err != nil {
+			return nil, err
+		}
+		results = append(results, result)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return results, nil
+}

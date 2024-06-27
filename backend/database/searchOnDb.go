@@ -45,6 +45,20 @@ func GetPostTable() ([]modals.Post, error) {
 	return ConvertResults[modals.Post](results)
 }
 
+func GetPostsByCategory(categoryName string) ([]modals.Post, error) {
+	executor := func(rows *sql.Rows) (interface{}, error) {
+		var post modals.Post
+		err := rows.Scan(&post.Id, &post.UserId, &post.Username, &post.Creation, &post.Title, &post.Description, &post.Name)
+		return post, err
+	}
+	query := "SELECT * FROM Posts WHERE categoryname = ? ORDER BY created_at DESC"
+	results, err := FetchDbOth(query, executor, categoryName)
+	if err != nil {
+		return nil, err
+	}
+	return ConvertResults[modals.Post](results)
+}
+
 /*
 func GetCommentsTable() ([]modals.Comments, error) {
 	executor := func(rows *sql.Rows) (interface{}, error) {

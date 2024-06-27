@@ -5,6 +5,8 @@ import (
 	"net/http"
 	"real-time-backend/backend/database"
 	"text/template"
+
+	"github.com/gorilla/mux"
 )
 
 func categorieHandler(w http.ResponseWriter, r *http.Request) {
@@ -69,6 +71,21 @@ func userHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	if err := json.NewEncoder(w).Encode(users); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
+
+func postsByCategoryHandler(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	categoryName := vars["categoryName"]
+	posts, err := database.GetPostsByCategory(categoryName)
+	if err != nil {
+		http.Error(w, "Error fetching posts", http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	if err := json.NewEncoder(w).Encode(posts); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 }
