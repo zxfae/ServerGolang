@@ -16,13 +16,15 @@ func LoadServer() {
 	router.PathPrefix("/frontend/").Handler(http.StripPrefix("/frontend/", http.FileServer(http.Dir("frontend"))))
 
 	router.HandleFunc("/", HomeHandler).Methods("GET")
-	router.HandleFunc("/api/users", userHandler).Methods("GET")
-	router.HandleFunc("/api/posts", postHandler).Methods("GET")
-	router.HandleFunc("/api/categories", categorieHandler).Methods("GET")
-	router.HandleFunc("/api/comments", commentsHandler).Methods("GET")
+
+	/*router.HandleFunc("/api/comments", commentsHandler).Methods("GET")
 	router.HandleFunc("/api/likescomments", LikesCommentsHandler).Methods("GET")
 	router.HandleFunc("/api/postscategories", PostscategoriesHandler).Methods("GET")
-	router.HandleFunc("/api/postslikes", PostsLikesHandler).Methods("GET")
+	router.HandleFunc("/api/postslikes", PostsLikesHandler).Methods("GET")*/
+
+	router.HandleFunc("/api/users", userHandler).Methods("GET")
+	router.HandleFunc("/api/categories", categorieHandler).Methods("GET")
+	router.HandleFunc("/api/posts", postHandler).Methods("GET")
 
 	//Auth session
 	router.HandleFunc("/api/checkAuth", func(w http.ResponseWriter, r *http.Request) {

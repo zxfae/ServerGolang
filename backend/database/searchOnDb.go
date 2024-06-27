@@ -35,7 +35,7 @@ func GetCategoriesTable() ([]modals.Categories, error) {
 func GetPostTable() ([]modals.Post, error) {
 	executor := func(rows *sql.Rows) (interface{}, error) {
 		var post modals.Post
-		err := rows.Scan(&post.Id, &post.UserId, &post.Username, &post.Creation, &post.Title, &post.Description)
+		err := rows.Scan(&post.Id, &post.UserId, &post.Username, &post.Creation, &post.Title, &post.Description, &post.Name)
 		return post, err
 	}
 	results, err := FetchDb("SELECT * FROM Posts ORDER BY created_at DESC", executor)
@@ -45,6 +45,7 @@ func GetPostTable() ([]modals.Post, error) {
 	return ConvertResults[modals.Post](results)
 }
 
+/*
 func GetCommentsTable() ([]modals.Comments, error) {
 	executor := func(rows *sql.Rows) (interface{}, error) {
 		var comments modals.Comments
@@ -70,7 +71,6 @@ func GetLikesCommentsTable() ([]modals.LikesComments, error) {
 	}
 	return ConvertResults[modals.LikesComments](results)
 }
-
 func GetPostCategoriesTable() ([]modals.Postscategories, error) {
 	executor := func(rows *sql.Rows) (interface{}, error) {
 		var PostCategories modals.Postscategories
@@ -95,4 +95,4 @@ func GetPostLikesTable() ([]modals.PostsLikes, error) {
 		return nil, err
 	}
 	return ConvertResults[modals.PostsLikes](results)
-}
+}*/

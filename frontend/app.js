@@ -257,8 +257,11 @@ function loadPosts() {
                 let truncatedDescription = post.description.length > 80 ? `${post.description.substring(0, 80)}...` : post.description;
                 postElement.innerHTML = `
                     <h2><a class="username">${post.username}</a><span class="Termux">@IFHK</span>:<span class="SpanPost"><span class="blue">~</span><span class="white">$/post/</span>${truncatedTitle}</span></h2>
+                    <div class="Weigth">
+                    <p><a class="username">category</a>:<span class="SpanPost"><span class="blue">~</span><span class="white">$</span>${post.categoryname}</p>
+                    </div>
                     <p>${truncatedDescription}</p>
-                    <p> <span class="time">${post.created}</span></p>
+                    <p><span class="time">${post.created}</span></p>
                 `;
                 postContainer.appendChild(postElement);
             });

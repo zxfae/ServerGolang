@@ -27,8 +27,10 @@ type Post struct {
 	Creation    string `json:"created"`
 	Title       string `json:"title"`
 	Description string `json:"description"`
+	Name        string `json:"categoryname"`
 }
 
+/*
 type Comments struct {
 	Id      string `json:"id"`
 	PostId  string `json:"postid"`
@@ -57,3 +59,4 @@ type PostsLikes struct {
 	Date      string `json:"date"`
 	Sentiment string `json:"sentiment"`
 }
+*/
