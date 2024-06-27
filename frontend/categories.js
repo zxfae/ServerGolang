@@ -16,7 +16,7 @@ export function loadCategories() {
                 const categoryElement = document.createElement('div');
                 categoryElement.className = 'category';
                 categoryElement.innerHTML = `
-                    <h2><a href="#category/${category.name}" class="category-link">${category.name}</a></h2>
+                    <h2><a class="username">Category</a>:<span class="Termux">@IFHK</span>:<span class="SpanPost"><span class="blue">~</span><span class="white">$</span><a href="#category/${category.name}" class="category-link">${category.name}</a></h2>
                     <p>${category.description}</p>
                 `;
                 categoriesContainer.appendChild(categoryElement);

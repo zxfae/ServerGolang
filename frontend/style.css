@@ -207,6 +207,11 @@ h1 {
     font-size: 1em;
 }
 
+.category h2 a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .category p {
     text-align: center;
     margin-bottom: 0;
@@ -219,7 +224,7 @@ h1 {
     font-size: 0.8em;
 }
 
-.category .termux {
+.category .Termux {
     color: greenyellow;
     margin-bottom: 0;
     font-size: 1.0em;
@@ -229,7 +234,7 @@ h1 {
     color: blue;
 }
 
-.category .white{
+.category .white {
     color: white;
 }
 
@@ -239,10 +244,9 @@ h1 {
     font-size: 1em;
 }
 
-.category .blue{
+.category .blue {
     color: blue;
 }
-
 
 .posts-container {
     border: 2px solid green;
