@@ -8,7 +8,6 @@ export function loadCategories() {
             return response.json();
         })
         .then(categories => {
-            console.log('Categories loaded:', categories);
             const categoriesContainer = document.querySelector('.categories-container');
             categoriesContainer.innerHTML = '';
             const limitedCategories = categories.slice(0, 12);

@@ -59,6 +59,20 @@ func GetPostsByCategory(categoryName string) ([]modals.Post, error) {
 	return ConvertResults[modals.Post](results)
 }
 
+func GetPostsByPosts(postName string) ([]modals.Post, error) {
+	executor := func(rows *sql.Rows) (interface{}, error) {
+		var post modals.Post
+		err := rows.Scan(&post.Id, &post.UserId, &post.Username, &post.Creation, &post.Title, &post.Description, &post.Name)
+		return post, err
+	}
+	query := "SELECT * FROM Posts WHERE title = ?"
+	results, err := FetchDbOth(query, executor, postName)
+	if err != nil {
+		return nil, err
+	}
+	return ConvertResults[modals.Post](results)
+}
+
 /*
 func GetCommentsTable() ([]modals.Comments, error) {
 	executor := func(rows *sql.Rows) (interface{}, error) {

@@ -26,7 +26,7 @@ func LoadServer() {
 	router.HandleFunc("/api/categories", categorieHandler).Methods("GET")
 	router.HandleFunc("/api/posts", postHandler).Methods("GET")
 	router.HandleFunc("/api/posts/category/{categoryName}", postsByCategoryHandler).Methods("GET")
-
+	router.HandleFunc("/api/posts/posts/{postName}", postsByPostsHandler).Methods("GET")
 	//Auth session
 	router.HandleFunc("/api/checkAuth", func(w http.ResponseWriter, r *http.Request) {
 		cookie, err := r.Cookie("_session_")

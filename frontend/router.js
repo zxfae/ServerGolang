@@ -1,11 +1,11 @@
 import { loadHome } from './home.js';
 import { loadRegister } from './register.js';
 import { loadLogin, logoutUser } from './login.js';
-import { loadPostsByCategory } from './posts.js';
+import { loadPostsByCategory, loadPostsByPosts } from './posts.js';
 
 export function handleRoute() {
     const hash = window.location.hash || '#login';
-    const [route, category] = hash.split('/');
+    const [route, param] = hash.split('/');
 
     switch (route) {
         case '#home':
@@ -25,8 +25,15 @@ export function handleRoute() {
             logoutUser();
             break;
         case '#category':
-            if (category) {
-                loadPostsByCategory(category);
+            if (param) {
+                loadPostsByCategory(param);
+            } else {
+                window.location.hash = '#home';
+            }
+            break;
+        case '#posts':
+            if (param) {
+                loadPostsByPosts(param);
             } else {
                 window.location.hash = '#home';
             }

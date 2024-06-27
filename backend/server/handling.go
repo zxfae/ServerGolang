@@ -90,6 +90,20 @@ func postsByCategoryHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func postsByPostsHandler(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+	postName := vars["postName"]
+	posts, err := database.GetPostsByPosts(postName)
+	if err != nil {
+		http.Error(w, "Error fetching posts", http.StatusInternalServerError)
+		return
+	}
+	w.Header().Set("Content-type", "application/json")
+	if err := json.NewEncoder(w).Encode(posts); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
+
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles("./static/index.html"))
 	err := tmpl.Execute(w, nil)

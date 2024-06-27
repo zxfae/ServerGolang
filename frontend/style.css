@@ -288,6 +288,11 @@ h1 {
     text-overflow: ellipsis;
 }
 
+.posts h2 a {
+    text-decoration: none;
+    color: inherit;
+}
+
 .posts p {
     margin-bottom: 0;
     font-size: medium;
@@ -309,7 +314,9 @@ h1 {
     font-size: 1em;
 }
 
-.posts .Weigth{
+
+
+.posts .Weigth {
     font-weight: bold;
     font-size: large;
 }
@@ -318,19 +325,15 @@ h1 {
     color: blue;
 }
 
-.posts .white{
+.posts .white {
     color: white;
 }
 
 .posts .SpanPost {
-    color:  #c9bebe
-    ;
+    text-decoration: none;
+    color: #c9bebe;
     margin-bottom: 0;
     font-size: 1em;
-}
-
-.posts .blue{
-    color: blue;
 }
 
 .posts .time {
