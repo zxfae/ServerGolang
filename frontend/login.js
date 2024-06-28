@@ -1,7 +1,6 @@
 export function loadLogin() {
     document.getElementById('content').innerHTML = `
         <form id="loginForm" class="form-container">
-            <!-- form content -->
             <label for="nickname" class="white-text">Nickname or Email:</label>
             <input type="text" id="nickname" name="nickname" required><br><br>
 

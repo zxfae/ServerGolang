@@ -347,6 +347,30 @@ h1 {
     justify-content: center;
 }
 
+.Cat a{
+    color: rgb(143, 20, 20);
+}
+.Cat .blue{
+    color: blue;
+}
+
+.textArea{
+    border: 2px solid green;
+}
+.textArea .Title{
+    text-align: center;
+    margin: 10px;
+}
+
+.textArea textarea {
+    width: 90%;
+    height: 100px;
+    resize: none; 
+}
+
+.textArea .Send-button{
+    margin: 10px;
+}
 /* Ajustements pour les médias */
 @media (max-width: 1024px) {
     .form-container {

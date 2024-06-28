@@ -49,19 +49,17 @@ export function loadPostsByPosts(postsName) {
             `;
             const postContainer = document.querySelector('.posts-container');
             postContainer.innerHTML = '';
-            const limitedPosts = posts.slice(0, 12);
-            limitedPosts.forEach(post => {
+            posts.forEach(post => {
                 const postElement = document.createElement('div');
                 postElement.className = 'posts';
-                let truncatedTitle = post.title.length > 60 ? `${post.title.substring(0, 60)}...` : post.title;
-                let truncatedDescription = post.description.length > 80 ? `${post.description.substring(0, 80)}...` : post.description;
+
                 postElement.innerHTML = `
                     <div class="scrolling">
-                        <h2><a class="username">${post.username}</a><span class="Termux">@IFHK</span>:<span class="SpanPost"><span class="blue">~$</span><a href="#posts/${truncatedTitle}">${truncatedTitle}</a></span></h2>
+                        <h2><a class="username">${post.username}</a><span class="Termux">@IFHK</span>:<span class="SpanPost"><span class="blue">~$</span><a href="#posts/${post.title}">${post.title}</a></span></h2>
                         <div class="Weigth">
                             <p><a class="username">category</a>:<span class="SpanPost"><span class="blue">~</span><span class="white">$</span>${post.categoryname}</p>
                         </div>
-                        <p>${truncatedDescription}</p>
+                        <p>${post.description}</p>
                         <p><span class="time">${post.created}</span></p>
                     </div>
                 `;
@@ -82,25 +80,39 @@ export function loadPostsByCategory(categoryName) {
         .then(posts => {
             const content = document.getElementById('content');
             content.innerHTML = `
-                <div class="category-posts">
-                    <h2 class="LinkCat">Category: ${categoryName}</h2>
+            <div class="Cat">
+            <h1><p><a class="username">category</a>:<span class="SpanPost"><span class="blue">~</span><span class="white">$</span>${categoryName}</p></h1>
+            </div>
+            <div class="textArea">
+                <form>
+                    <div class="Title">
+                        <label for="title" class="white-text">Title:</label>
+                        <input type="text" id="title" name="title" required><br><br>
+                         <label for="description" class="white-text">Description:</label>
+                        <textarea class="textarea" id="description" name="description" required></textarea>
+                        
+                        <div class="Send-button">
+                            <button type="submit">Send</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+                <div class="PostsBycat-wrapper">
+                <div class="PostsBycat">
                     <div class="posts-container"></div>
                 </div>
+            </div>
             `;
             const postContainer = document.querySelector('.posts-container');
             postContainer.innerHTML = '';
-            const limitedPosts = posts.slice(0, 12);
-            limitedPosts.forEach(post => {
+            posts.forEach(post => {
                 const postElement = document.createElement('div');
                 postElement.className = 'posts';
                 let truncatedTitle = post.title.length > 60 ? `${post.title.substring(0, 60)}...` : post.title;
                 let truncatedDescription = post.description.length > 80 ? `${post.description.substring(0, 80)}...` : post.description;
                 postElement.innerHTML = `
                     <div class="scrolling">
-                        <h2><a class="username">${post.username}</a><span class="Termux">@IFHK</span>:<span class="SpanPost"><span class="blue">~</span><span class="white">$/post/</span>${truncatedTitle}</span></h2>
-                        <div class="Weigth">
-                            <p><a class="username">category</a>:<span class="SpanPost"><span class="blue">~</span><span class="white">$</span>${post.categoryname}</p>
-                        </div>
+                        <h2><a class="username">${post.username}</a><span class="Termux">@IFHK</span>:<span class="SpanPost"><span class="blue">~</span><span class="white">$/post/</span><a href="#posts/${post.title}">${truncatedTitle}</a></span></h2>
                         <p>${truncatedDescription}</p>
                         <p><span class="time">${post.created}</span></p>
                     </div>
