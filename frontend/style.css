@@ -213,6 +213,8 @@ h1 {
 }
 
 .category p {
+    color: rgb(179, 3, 3);
+    font-weight: bold;
     text-align: center;
     margin-bottom: 0;
     font-size: 0.8em;
@@ -356,6 +358,7 @@ h1 {
 
 .textArea{
     border: 2px solid green;
+    width: auto;
 }
 .textArea .Title{
     text-align: center;

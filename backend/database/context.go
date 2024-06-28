@@ -5,9 +5,16 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+	"real-time-backend/backend/modals"
 
 	"golang.org/x/crypto/bcrypt"
 )
+
+func CreatePost(post *modals.Post) error {
+	query := `INSERT INTO Posts (id, userId, username, created_at, title, description, categoryname) VALUES (?, ?, ?, ?, ?, ?, ?)`
+	_, err := Db.Exec(query, post.Id, post.UserId, post.Username, post.Creation, post.Title, post.Description, post.Name)
+	return err
+}
 
 // Login function, query necessary options,
 // Handling error, more details to server and simple message to client

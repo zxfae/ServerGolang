@@ -91,6 +91,7 @@ export function loadPostsByCategory(categoryName) {
                          <label for="description" class="white-text">Description:</label>
                         <textarea class="textarea" id="description" name="description" required></textarea>
                         
+                        <input type="hidden" id="category" name="category">
                         <div class="Send-button">
                             <button type="submit">Send</button>
                         </div>
@@ -118,6 +119,27 @@ export function loadPostsByCategory(categoryName) {
                     </div>
                 `;
                 postContainer.appendChild(postElement);
+            });
+            document.addEventListener('DOMContentLoaded', (event) => {
+                const form = document.getElementById('postForm');
+                const categoryInput = document.getElementById('category');
+                categoryInput.value = categoryName;
+
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const formData = new FormData(form);
+                    fetch('/api/posts', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Success:', data);
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+                });
             });
         })
         .catch(error => console.error('Error loading posts:', error));
