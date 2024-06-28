@@ -5,15 +5,33 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
-	"real-time-backend/backend/modals"
 
 	"golang.org/x/crypto/bcrypt"
 )
 
-func CreatePost(post *modals.Post) error {
-	query := `INSERT INTO Posts (id, userId, username, created_at, title, description, categoryname) VALUES (?, ?, ?, ?, ?, ?, ?)`
-	_, err := Db.Exec(query, post.Id, post.UserId, post.Username, post.Creation, post.Title, post.Description, post.Name)
-	return err
+func CreatePost(ctx context.Context, username, title, description, categoryname string) error {
+	query := `INSERT INTO Posts (id, username, title, description, categoryname) VALUES (?, ?, ?, ?, ?)`
+
+	//New transaction
+	tx, err := Db.BeginTx(ctx, nil)
+	if err != nil {
+		fmt.Println(err)
+		return nil
+	}
+	//Cancel transaction if not terminated
+	defer tx.Rollback()
+	//Context execution
+	_, err = tx.ExecContext(ctx, query, GenerateUUID(), username, title, description, categoryname)
+	if err != nil {
+		return nil
+	}
+	err = tx.Commit()
+	if err != nil {
+		return nil
+	}
+	fmt.Println("Post created successfully")
+
+	return nil
 }
 
 // Login function, query necessary options,

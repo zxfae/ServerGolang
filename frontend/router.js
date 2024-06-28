@@ -37,6 +37,7 @@ export function handleRoute() {
             } else {
                 window.location.hash = '#home';
             }
+            
             break;
         default:
             window.location.hash = '#home';

@@ -23,6 +23,8 @@ func LoadServer() {
 	router.HandleFunc("/api/postslikes", PostsLikesHandler).Methods("GET")*/
 
 	router.HandleFunc("/api/users", userHandler).Methods("GET")
+
+	//Client interactions
 	router.HandleFunc("/api/categories", categorieHandler).Methods("GET")
 	router.HandleFunc("/api/posts", postHandler).Methods("GET")
 	router.HandleFunc("/api/posts/category/{categoryName}", postsByCategoryHandler).Methods("GET")
@@ -123,6 +125,40 @@ func LoadServer() {
 		})
 
 		fmt.Fprintf(w, "User successfully logged out")
+	}).Methods("POST")
+	//Test
+	router.HandleFunc("/created", func(w http.ResponseWriter, r *http.Request) {
+		ctx, cancel := context.WithTimeout(r.Context(), 5*time.Second)
+		defer cancel()
+
+		if r.Method == http.MethodPost {
+			category := r.FormValue("category")
+			title := r.FormValue("title")
+			description := r.FormValue("description")
+
+			cookie, err := r.Cookie("_session_")
+			if err != nil {
+				http.Error(w, "Unauthorized", http.StatusUnauthorized)
+				return
+			}
+
+			userSession, valid := getSession(cookie.Value)
+			if !valid {
+				http.Error(w, "Unauthorized", http.StatusUnauthorized)
+				return
+			}
+
+			username := userSession.Username
+
+			err = database.CreatePost(ctx, username, title, description, category)
+			if err != nil {
+				http.Error(w, err.Error(), http.StatusInternalServerError)
+				return
+			}
+			fmt.Fprintf(w, "Post %s successfully created", title)
+		} else {
+			http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
+		}
 	}).Methods("POST")
 
 	serverConfig := ServerParameters(router, 10)

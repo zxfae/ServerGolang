@@ -29,30 +29,33 @@ function renderHome() {
 
     content.innerHTML = `
         <div class="home-message">
-            <!-- home content -->
+            <div class="full-height-box form-container">
+                <h1 class="white-text">Welcome To <span>IFHK</span> Forum</h1>
+                <p class="white-text">This is your HomeBoard. Enjoy your stay!</p>
+            </div>
         </div>
         <p class="white-text">Categories</p>
         <div class="categories-container"></div>
         <div class="PostForm-container">
         <p class="white-text">Create your post</p>
             <div class="textArea">
-                <form>
+                <form id="postForm">
                     <div class="Title">
                         <label for="category" class="white-text">Category:</label>
                             <select name="category" id="cat-select" required>
                             <option value="">--Please choose an category--</option>
-                            <option value="presentation">Presentation</option>
-                            <option value="programmation">Programmation</option>
-                            <option value="linux">Linux</option>
-                            <option value="techNews">TechNews</option>
-                            <option value="artificial-intelligence">Artificial Intelligence</option>
-                            <option value="mathematical">Mathematical</option>
-                            <option value="tutorials">Tutorials</option>
-                            <option value="cybersecurity">CyberSecurity</option>
-                            <option value="exercises">Exercises</option>
-                            <option value="moderation">Moderation</option>
-                            <option value="coffeebar">CoffeeBar</option>
-                            <option value="others">Others</option>
+                            <option value="Presentation">Presentation</option>
+                            <option value="Programmation">Programmation</option>
+                            <option value="Linux">Linux</option>
+                            <option value="TechNews">TechNews</option>
+                            <option value="Artificial-intelligence">Artificial Intelligence</option>
+                            <option value="Mathematical">Mathematical</option>
+                            <option value="Tutorials">Tutorials</option>
+                            <option value="CyberSecurity">CyberSecurity</option>
+                            <option value="Exercises">Exercises</option>
+                            <option value="Moderation">Moderation</option>
+                            <option value="Coffeebar">CoffeeBar</option>
+                            <option value="Others">Others</option>
                         </select>
                         <label for="title" class="white-text">Title:</label>
                         <input type="text" id="title" name="title" required><br><br>
@@ -70,7 +73,31 @@ function renderHome() {
         <div class="posts-container"></div>
     `;
     console.log('Home content set');
-
+    document.getElementById('postForm').addEventListener('submit', submitForm);
     loadCategories();
     loadPosts();
+
+}
+
+function submitForm(event) {
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+
+    fetch('/created', {
+        method: 'POST',
+        body: new URLSearchParams(formData)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        } else if(response.ok){
+            window.location.hash = '#home';
+            loadHome();
+        }
+        return response.json();
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 }

@@ -35,7 +35,7 @@ func GetCategoriesTable() ([]modals.Categories, error) {
 func GetPostTable() ([]modals.Post, error) {
 	executor := func(rows *sql.Rows) (interface{}, error) {
 		var post modals.Post
-		err := rows.Scan(&post.Id, &post.UserId, &post.Username, &post.Creation, &post.Title, &post.Description, &post.Name)
+		err := rows.Scan(&post.Id, &post.Username, &post.Creation, &post.Title, &post.Description, &post.Name)
 		return post, err
 	}
 	results, err := FetchDb("SELECT * FROM Posts ORDER BY created_at DESC", executor)
@@ -48,7 +48,7 @@ func GetPostTable() ([]modals.Post, error) {
 func GetPostsByCategory(categoryName string) ([]modals.Post, error) {
 	executor := func(rows *sql.Rows) (interface{}, error) {
 		var post modals.Post
-		err := rows.Scan(&post.Id, &post.UserId, &post.Username, &post.Creation, &post.Title, &post.Description, &post.Name)
+		err := rows.Scan(&post.Id, &post.Username, &post.Creation, &post.Title, &post.Description, &post.Name)
 		return post, err
 	}
 	query := "SELECT * FROM Posts WHERE categoryname = ? ORDER BY created_at DESC"
@@ -62,7 +62,7 @@ func GetPostsByCategory(categoryName string) ([]modals.Post, error) {
 func GetPostsByPosts(postName string) ([]modals.Post, error) {
 	executor := func(rows *sql.Rows) (interface{}, error) {
 		var post modals.Post
-		err := rows.Scan(&post.Id, &post.UserId, &post.Username, &post.Creation, &post.Title, &post.Description, &post.Name)
+		err := rows.Scan(&post.Id, &post.Username, &post.Creation, &post.Title, &post.Description, &post.Name)
 		return post, err
 	}
 	query := "SELECT * FROM Posts WHERE title = ?"

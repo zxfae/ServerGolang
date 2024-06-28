@@ -22,13 +22,11 @@ func CreateTablePosts(db *sql.DB) error {
 	table := `
 	CREATE TABLE IF NOT EXISTS Posts (
 		id TEXT NOT NULL PRIMARY KEY,
-		userId TEXT NOT NULL,
 		username TEXT NOT NULL,
 		created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
 		title TEXT NOT NULL,
 		description TEXT NOT NULL,
 		categoryname TEXT NOT NULL,
-		FOREIGN KEY(userId) REFERENCES Users(id)
 		FOREIGN KEY(username) REFERENCES Users(nickname)
 		FOREIGN KEY(categoryname) REFERENCES Categories(name)
 	);`

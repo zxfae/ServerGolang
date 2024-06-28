@@ -10,6 +10,7 @@ import (
 // Structure of session with Username and Expiry.
 type Session struct {
 	Username string
+	UserId   string
 	Expiry   time.Time
 }
 
