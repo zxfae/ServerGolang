@@ -3,6 +3,7 @@ package server
 import (
 	"context"
 	"fmt"
+	"html"
 	"net/http"
 	"real-time-backend/backend/database"
 	"time"
@@ -132,9 +133,10 @@ func LoadServer() {
 		defer cancel()
 
 		if r.Method == http.MethodPost {
-			category := r.FormValue("category")
-			title := r.FormValue("title")
-			description := r.FormValue("description")
+			//Escape user inputs before processing or storing them.
+			category := html.EscapeString(r.FormValue("category"))
+			title := html.EscapeString(r.FormValue("title"))
+			description := html.EscapeString(r.FormValue("description"))
 
 			cookie, err := r.Cookie("_session_")
 			if err != nil {
